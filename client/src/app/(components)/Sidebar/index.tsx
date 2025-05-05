@@ -1,8 +1,8 @@
 "use client"
 
 import { useAppDispatch, useAppSelector } from '@/app/redux';
-import { setIsSiedebarCollapsed } from '@/state';
-import { Archive, Clipboard, Icon, Layout, LucideIcon, Menu, Settings, Settings2, WalletCards } from 'lucide-react'
+import { setIsSidebarCollapsed } from '@/state';
+import { Archive, Clipboard,  Layout, LucideIcon, Menu, Settings,  WalletCards } from 'lucide-react'
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import React from 'react'
@@ -44,10 +44,10 @@ const SidebarLink = ( {
 const Sidebar= () => {
     const dispatch = useAppDispatch();
     const isSidebarCollapsed = useAppSelector(
-      (state) => state.global.isSIdebarCollapsed
+      (state) => state.global.isSidebarCollapsed
     );
     const toggleSidebar = () => {
-        dispatch(setIsSiedebarCollapsed(!isSidebarCollapsed));
+        dispatch(setIsSidebarCollapsed(!isSidebarCollapsed));
     };
     
     
@@ -99,6 +99,7 @@ const Sidebar= () => {
             label='Movimientos' 
             isCollapsed={isSidebarCollapsed}
             />
+            
             <SidebarLink 
             href='/configuracion' 
             icon={Settings} 
@@ -108,7 +109,7 @@ const Sidebar= () => {
         </div>
 
         {/* FOOTER */}
-        <div>
+        <div className={`${isSidebarCollapsed ? "hidden" : "block"} mb-10`}>
             <p className='text-center texte-xs text-gray-500'>&copy; 2025 JMI </p>
         </div>
     </div>
